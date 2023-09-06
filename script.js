@@ -1,72 +1,68 @@
 var regex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+var videoID =/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?feature=player_embedded&v=))([\w-]+)/;
  $("#left").click(function(){
-        var message = $("#message").val();
-        if(message!==""){
-        //$(".container").append(message);
-        var messageContent;
-        //<iframe width="560" height="315" src="https://www.youtube.com/embed/yAE6a6xsbFE?si=src39nX-52HKRM4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    var message = $("#message").val();
+    var messageContent;
+    var newDiv;
+    newDiv = $('<div class = "col-4"></div>');
+        newDiv.css("width","33%");
+        newDiv.css("left","33%");
+        newDiv.css("border-radius","5px");
+        newDiv.css("margin-bottom","15px");
+        newDiv.css("background-color","#967BB6");
+        newDiv.css("box-shadow","0 3px 10px rgb(0 0 0 / 0.3)")
+        newDiv.css("padding","10px")
+        $("div.messages").before(newDiv);
+    if(message!==""){
         if(message.match(regex)){
-            messageContent = document.createElement("iframe");
-            messageContent.attr("src",message);
-            messageContent.attr("frameborder","0");
+            var matchID = message.match(videoID);
+            messageContent = $("<iframe></iframe>");
+            messageContent.attr("src","https://www.youtube.com/embed/"+matchID[1]);
+            messageContent.attr("width","100%");
+            messageContent.attr("height","315px");
             messageContent.attr("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-            messageContent.css("width","100%");
-            messageContent.css("height","315px");
-            messageContent.css("box-shadow","0 3px 10px rgb(0 0 0 / 0.3)")
-            messageContent.css("padding","15px")
             messageContent.css("left","33%");
-            messageContent.css("border-radius","5px");
-            messageContent.css("margin-bottom","15px");
-           // messageContent.css("background-color","lavender");
+            newDiv.append(messageContent);
+
+            
         }
         else{
-            messageContent = $('<div class = "col-4"></div>');
-            messageContent.css("width","100%");
-            messageContent.css("left","33%");
-            messageContent.css("border-radius","5px");
-            messageContent.css("margin-bottom","15px");
-            messageContent.css("background-color","lavender");
-        //box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
-        //padding: 10px;
-            messageContent.css("box-shadow","0 3px 10px rgb(0 0 0 / 0.3)")
-            messageContent.css("padding","10px")
-            messageContent.text(message);
+        newDiv.text(message);
         }
-        
-        $("div.messages").before(messageContent);
-        }
+    //box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+    //padding: 10px;
+    }
     });
     $("#right").click(function(){
         var message = $("#message").val();
+        var messageContent;
+        var newDiv;
+        newDiv = $('<div class = "col-4"></div>');
+            newDiv.css("width","33%");
+            newDiv.css("left","33%");
+            newDiv.css("border-radius","5px");
+            newDiv.css("margin-bottom","15px");
+            newDiv.css("background-color","#9BB57B");
+            newDiv.css("box-shadow","0 3px 10px rgb(0 0 0 / 0.3)")
+            newDiv.css("padding","10px");
+            $("div.messages").before(newDiv);
         if(message!==""){
             if(message.match(regex)){
-                messageContent = document.createElement("iframe");
-                messageContent.attr("src",message);
+                var matchID = message.match(videoID);
+                messageContent = $("<iframe></iframe>");
+                messageContent.attr("src","https://www.youtube.com/embed/"+matchID[1]);
+                messageContent.attr("width","100%");
+                messageContent.attr("height","315px");
                 messageContent.attr("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-                messageContent.css("width","100%");
-                messageContent.css("height","33%");
-                messageContent.css("height","315px");;
-                messageContent.css("box-shadow","0 3px 10px rgb(0 0 0 / 0.3)")
-                messageContent.css("padding","15px")
                 messageContent.css("left","33%");
-                messageContent.css("border-radius","5px");
-                messageContent.css("margin-bottom","15px");
-                messageContent.css("background-color","#D1FBCD");
+                newDiv.append(messageContent);
+
+                
             }
             else{
-            messageContent = $('<div class = "col-4"></div>');
-            messageContent.css("width","33%");
-            messageContent.css("left","33%");
-            messageContent.css("border-radius","5px");
-            messageContent.css("margin-bottom","15px");
-            messageContent.css("background-color","#D1FBCD");
+            newDiv.text(message);
+            }
         //box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
         //padding: 10px;
-            messageContent.css("box-shadow","0 3px 10px rgb(0 0 0 / 0.3)")
-            messageContent.css("padding","10px")
-            messageContent.text(message);
-            }
-
-            $("div.messages").before(messageContent);
         }
     });
